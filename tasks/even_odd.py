@@ -9,7 +9,6 @@ def even_odd(numbers: list[int]) -> float:
         >> even_odd([1, 2, 3, 4, 5])
         0.6667
     """
-
     if len(numbers) == 0:
         return 0
     se = 0
@@ -22,5 +21,4 @@ def even_odd(numbers: list[int]) -> float:
     if se == 0 or so == 0:
         return 0
     return se / so
-
     raise NotImplementedError

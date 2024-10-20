@@ -11,17 +11,17 @@ KV = TypeVar("KV")
 
 
 def flip_kv_vk(d: dict[KT, KV]) -> dict[KV, KT]:
-    """Формирует словарь, в котором в качестве ключей - значения
-    переданного словаря, а в качестве значений - ключи.
+    """"Переворачивает словарь, меняя местами ключи и значения.
 
-    Example:
-        >> flip_kv_vk({'tokyo': 'Токио', 'moscow': 'Москва'})
-        {
-            'Токио': 'tokyo',
-            'Москва': 'moscow',
-        }
-    """
-    raise NotImplementedError
+  Args:
+    dictionary: Словарь, который нужно перевернуть.
+
+  Returns:
+    Новый словарь, где ключи и значения поменялись местами.
+  """
+
+    return {value: key for key, value in d.items()}
+print(flip_kv_vk({"a" : "b","c" : "d"}))
 
 
 def flip_kv_vk_safe(d: dict[KT, KV]) -> dict[KV, list[KT]]:
@@ -35,4 +35,26 @@ def flip_kv_vk_safe(d: dict[KT, KV]) -> dict[KV, list[KT]]:
             '+3': ['Москва', 'Санкт-Петербург'],
         }
     """
-    raise NotImplementedError
+    # reversed_dict = {}
+    # for key, value in d.items():
+    #     if value not in reversed_dict:  # Избегаем дублирования ключей
+    #         reversed_dict[value] = key
+    #     else:
+    #         # Если значение уже существует, то создаем список,
+    #         # добавляем текущий ключ в список и обновляем значение.
+    #         if isinstance(reversed_dict[value], list):
+    #             reversed_dict[value].append(key)
+    #         else:
+    #             reversed_dict[value] = [reversed_dict[value], key]
+
+    # return reversed_dict
+    flipped_dict = {}
+    for key, value in d.items():
+        if value in flipped_dict:
+            # Если значение уже есть в словаре, добавим ключ в список
+            flipped_dict[value].append(key)
+        else:
+            # Если значение еще не встречалось, создадим список с этим ключом
+            flipped_dict[value] = [key]
+
+    return flipped_dict
